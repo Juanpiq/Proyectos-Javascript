@@ -16,7 +16,7 @@ window.onload = function (){
             } else if(n == "="){
                 calcular();
             } else if(signos.indexOf(n) > -1){
-                validaSigno(n);
+                validarSigno(n);
             } else{
                 regresar(n);
             }
@@ -46,21 +46,30 @@ function numeros(e){
 }
 
 function borrar(){
-    console.log("Borrar");
+    document.forma.valor.value = "";
 }
 
 function borrarCaracter(){
-    console.log("Borrar caracter");
+    let anterior = document.forma.valor.value;
+    let nuevo = anterior.substring(0, anterior.length -1);
+    document.getElementById("valor").value = nuevo;
 }
 
 function calcular(){
-    console.log("Calcular");
+    let resultado = eval(document.forma.valor.value);
+    if(resultado == "Infinity"){
+        document.forma.valor = "No podemos dividir entre cero"
+    } else {
+        document.forma.valor.value = resultado;
+    }
 }
 
-function validaSigno(n){
+function validarSigno(n){
     console.log("Validar signo");
 }
 
 function regresar(n){
-    console.log("Regresar número");
+    let anterior = document.forma.valor.value;
+    let nuevo = anterior+n;
+    document.getElementById("valor").value = nuevo;
 }
