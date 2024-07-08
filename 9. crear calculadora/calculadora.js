@@ -1,6 +1,26 @@
 window.onload = function (){
+    var signos = "+-*/"
+    var x = new Array();
     document.getElementById("valor").onkeypress = function(event){
         return numeros(event);
+    }
+
+    x = document.querySelectorAll("input[type=button]");
+    for(var i = 0; i < x.length; i++){
+        x[i].onclick = function(){
+            let n = this.value;
+            if(n == "C"){
+                borrar();
+            } else if(n == "<"){
+                borrarCaracter();
+            } else if(n == "="){
+                calcular();
+            } else if(signos.indexOf(n) > -1){
+                validaSigno(n);
+            } else{
+                regresar(n);
+            }
+        }
     }
 }
 
@@ -23,4 +43,24 @@ function numeros(e){
     if(numeros.indexOf(teclado) == -1 && bandera == false){
         return false;
     }
+}
+
+function borrar(){
+    console.log("Borrar");
+}
+
+function borrarCaracter(){
+    console.log("Borrar caracter");
+}
+
+function calcular(){
+    console.log("Calcular");
+}
+
+function validaSigno(n){
+    console.log("Validar signo");
+}
+
+function regresar(n){
+    console.log("Regresar número");
 }
