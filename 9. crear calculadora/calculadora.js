@@ -58,14 +58,47 @@ function borrarCaracter(){
 function calcular(){
     let resultado = eval(document.forma.valor.value);
     if(resultado == "Infinity"){
-        document.forma.valor = "No podemos dividir entre cero"
+        document.forma.valor.value = "No podemos dividir entre cero"
     } else {
         document.forma.valor.value = resultado;
     }
 }
 
 function validarSigno(n){
-    console.log("Validar signo");
+    let anterior = document.forma.valor.value;
+    if(anterior != ""){
+        document.getElementById("valor").value = anterior + n;
+        cadena = document.getElementById("valor").value;
+
+        let record = 0;
+        let igual = 1;
+
+        for(var a = 1; a < cadena.length; a++){
+            if(cadena.charAt(a)== "+" || 
+               cadena.charAt(a)== "-" ||
+               cadena.charAt(a)== "*" ||
+               cadena.charAt(a)== "/" ||
+               cadena.charAt(a)== "."){
+                    igual++;
+            } else {
+                if(igual > record){
+                    record = igual;
+                } else {
+                    igual = 1;
+                }
+            }
+
+            if(igual > record){
+                record = igual;
+            }
+            if(record > 2){
+                var numero = cadena.substring(0, cadena.length-1);
+                document.getElementById("valor").value = numero;
+                record = 0; igual = 1;
+            }
+
+        }
+    }
 }
 
 function regresar(n){
